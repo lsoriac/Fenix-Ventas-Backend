@@ -2,6 +2,7 @@ const express = require('express')
 require('./config/config')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 //initializations
 const app = express()
@@ -13,12 +14,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
     //settings
 
 //Middelwares
+app.use(cors());
 app.use(morgan('dev'));
 
-
-
 //Routes
-//login
 app.use('/login', require('../routes/login'))
 app.use('/register', require('../routes/register'))
 app.use('/ventas', require('../routes/ventas'))
