@@ -7,9 +7,7 @@ VentasControl.getVentas = async(req, res) => {
     res.setHeader("Access-Control-Max-Age", "1800");
     res.setHeader("Access-Control-Allow-Headers", "content-type");
     res.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS");
-
     try {
-
         //query database
         await pool.query('select * FROM ventasreporte ', (err, result, fields) => {
             res.json({
