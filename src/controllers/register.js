@@ -1,9 +1,10 @@
 const RegisterControl = {};
 const bcrypt = require('bcryptjs')
-const pool = require("../../database")
-    //const _ = require('underscore')
+const pool = require("../database/database")
+require('dotenv').config();
 
 RegisterControl.createUser = async(req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', process.env.URL_FRONT);
     try {
         const { nombre, contrasena, usuario } = req.body
             //encrypt

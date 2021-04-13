@@ -1,7 +1,9 @@
 const VentasControl = {}
-const pool = require("../../database")
+const pool = require("../database/database")
+require('dotenv').config();
 
 VentasControl.getVentas = async(req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', process.env.URL_FRONT);
     try {
         //query database
         await pool.query('select * FROM ventasreporte ', (err, result, fields) => {

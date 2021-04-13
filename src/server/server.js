@@ -1,8 +1,8 @@
 const express = require('express')
-require('./config/config')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+require('dotenv').config();
 
 //initializations
 const app = express()

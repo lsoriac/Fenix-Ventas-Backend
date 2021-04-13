@@ -1,9 +1,11 @@
 const LoginControl = {}
-const pool = require("../../database")
+const pool = require("../database/database")
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 LoginControl.login = async(req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', process.env.URL_FRONT);
     let body = req.body;
     await pool.query("SELECT * FROM usuarios WHERE usuario =" + '"' + body.usuario + '"', (error, userDB) => {
         if (error) {
@@ -16,8 +18,8 @@ LoginControl.login = async(req, res) => {
             return res.status(400).json({
                 status: false,
                 error: {
-                    //developer
-                    message: "(Usuario) o contraseña incorrectos"
+                    //developer "(Usuario) o contraseña incorrectos"
+                    message: "Usuario o contraseña incorrectos"
                 }
             });
         }
@@ -27,8 +29,8 @@ LoginControl.login = async(req, res) => {
             return res.status(400).json({
                 status: false,
                 error: {
-                    //developer
-                    message: "Usuario o (contraseña) incorrectos"
+                    //developer "Usuario o (contraseña) incorrectos"
+                    message: "Usuario o contraseña incorrectos"
                 }
             });
         }
@@ -38,7 +40,7 @@ LoginControl.login = async(req, res) => {
 
         let token = jwt.sign({
             user: userDB[0]
-        }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKEN = 60 * 60 });
+        }, process.env.SEED, { expiresIn: 60 * 60 * 24 * 30 });
 
         //resp
         res.json({
