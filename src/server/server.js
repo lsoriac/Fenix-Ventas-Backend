@@ -20,6 +20,7 @@ app.use(morgan('dev'));
 //Routes
 app.use('/login', require('../routes/login'))
 app.use('/register', require('../routes/register'))
+app.use('/recover', require('../routes/recover'))
 app.use('/ventas', require('../routes/ventas'))
 
 //Starting server
