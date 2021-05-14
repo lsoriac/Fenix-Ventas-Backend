@@ -55,13 +55,18 @@ RecoverControl.updatePass = async(req, res) => {
                     pass: process.env.PASS_EMAIL
                 }
             });
-            transporter.sendMail({
-                from: '"Recuperar Contraseña Fenix Ventas" <lenisantiagos@gmail.com>', // sender address
-                to: email, // list of receivers
-                subject: "Recuperación de Contraseña", // Subject line
-                //text: "Hello world??", // plain text body
-                html: contentHTML, // html body
-            })
+            try {
+                transporter.sendMail({
+                    from: '"Recuperar Contraseña Fenix Ventas" <lenisantiagos@gmail.com>', // sender address
+                    to: email, // list of receivers
+                    subject: "Recuperación de Contraseña", // Subject line
+                    //text: "Hello world??", // plain text body
+                    html: contentHTML, // html body
+                })
+
+            } catch (e) {
+                console.log("erorrrrrr", e);
+            }
 
 
             res.json({
