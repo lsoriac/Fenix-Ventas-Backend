@@ -1,7 +1,6 @@
 const RecoverControl = {};
 const pool = require("../database/database")
 var generator = require('generate-password');
-const bcrypt = require('bcryptjs')
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
@@ -14,11 +13,8 @@ RecoverControl.updatePass = async(req, res) => {
             numbers: true,
             symbols: true
         });
-        //console.log(password);
-        //encrypt
-        let pass_encrypt = bcrypt.hashSync(password, 10)
-            //find email and change password
-        await pool.query("UPDATE `usuarios` SET `contrasena` =" + "'" + pass_encrypt + "'" + " WHERE (`email` = '" + email + "')", (error, userDB) => {
+        //find email and change password
+        await pool.query("UPDATE `usuarios` SET `contrasena` =" + "'" + password + "'" + " WHERE (`email` = '" + email + "')", (error, userDB) => {
             //error sql
             if (error) {
                 return res.status(400).json({
