@@ -17,7 +17,6 @@ RegisterControl.createUser = async(req, res) => {
             res.json({
                 status: true,
                 message: "Usuario Registrado de forma correcta",
-                //registros: result //check info to send
             })
         })
     } catch (error) {

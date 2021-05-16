@@ -1,6 +1,5 @@
 const LoginControl = {}
 const pool = require("../database/database")
-const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -24,8 +23,7 @@ LoginControl.login = async(req, res) => {
             });
         }
         //Verify password  
-        if (!bcrypt.compareSync(body.contrasena, userDB[0].contrasena)) {
-
+        if (body.contrasena !== userDB[0].contrasena) {
             return res.status(400).json({
                 status: false,
                 error: {

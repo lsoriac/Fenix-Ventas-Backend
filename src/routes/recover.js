@@ -1,8 +1,9 @@
 //Import modules
 const express = require('express')
 const router = express.Router();
-const { updatePass } = require('../controllers/recover');
+const { updatePass, sendEmail } = require('../controllers/recover');
 router.route('/')
-    .post(updatePass)
+    .put(updatePass)
+    .post(sendEmail)
 
 module.exports = router;

@@ -11,7 +11,6 @@ VentasControl.getVentas = async(req, res) => {
                 status: true,
                 message: "Registros Encontrados",
                 registros: result,
-                //num: result.length
             })
         })
     } catch (error) {
